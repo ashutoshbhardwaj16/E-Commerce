@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan')
 const mongoose = require('mongoose'); 
  // require('dotenv').config({path: './.env'})
-// require('dotenv/config')
+// require('dotenv/config') testing commit
 const api2 = process.env.API_URL;
 const api = 'api/v1';
 console.log(api2)
