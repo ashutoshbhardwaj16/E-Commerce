@@ -5,19 +5,30 @@ const mongoose = require('mongoose');
  // require('dotenv').config({path: './.env'})
 // require('dotenv/config') testing commit success
 const api2 = process.env.API_URL;
-const api = 'api/v1';
+
 
 // MiddleWare
 app.use(express.json())
 app.use(morgan('tiny'))
 
 const Product = require('./models/product');
+
+// Routes
+const categoriesRoutes = require('./routers/categories');
 const productsRouter = require('./routers/product');
+const usersRoutes = require('./routers/users');
+const ordersRoutes = require('./routers/orders');
 
-app.use(`/${api}/products/all`, productsRouter)
+
+const api = 'api/v1';
+
+app.use(`/${api}/products/all`, productsRouter);
+app.use(`/${api}/categories/all`, categoriesRoutes);
+app.use(`/${api}/users/all`, usersRoutes);
+app.use(`/${api}/orders/all`, ordersRoutes);
 
 
-
+/* connecting db */
 // const CONNECTION_STRING = 'mongodb+srv://ashu:qwEsc342@cluster0.hysqv.mongodb.net/?retryWrites=true&w=majority';
 const CONNECTION_STRING = 'mongodb+srv://ashu:qwEsc342@cluster0.zmur1.mongodb.net/?retryWrites=true&w=majority'
 
