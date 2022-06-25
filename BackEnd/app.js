@@ -13,11 +13,9 @@ app.options('*', cors());
 app.use(express.json())
 app.use(morgan('tiny'))
 
-const Product = require('./models/product');
-
 // Routes
 const categoriesRoutes = require('./routers/categories');
-const productsRouter = require('./routers/product');
+const productsRouter = require('./routers/products');
 const usersRoutes = require('./routers/users');
 const ordersRoutes = require('./routers/orders');
 
