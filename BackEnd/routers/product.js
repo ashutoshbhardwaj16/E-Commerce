@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Product = require('../models/product');
-
+// const Product = require('../models/product'); // when product model is exported as -> module.exports = Product 
+const {Product} = require('../models/product');
 router.get(`/`,async (req, res)=>{
     const productList = await Product.find()
     if (!productList){
@@ -31,4 +31,4 @@ router.post(`/`, (req, res)=>{
     // res.send('wlecome to api')
 })
 
-module.exports=  router;
+module.exports=  router;    
