@@ -2,11 +2,13 @@ const express = require('express')
 const app = express();
 const morgan = require('morgan')
 const mongoose = require('mongoose'); 
+const cors = require('cors');
  // require('dotenv').config({path: './.env'})
 // require('dotenv/config') testing commit success
 const api2 = process.env.API_URL;
 
-
+app.use(cors());
+app.options('*', cors());
 // MiddleWare
 app.use(express.json())
 app.use(morgan('tiny'))
@@ -22,10 +24,10 @@ const ordersRoutes = require('./routers/orders');
 
 const api = 'api/v1';
 
-app.use(`/${api}/products/all`, productsRouter);
-app.use(`/${api}/categories/all`, categoriesRoutes);
-app.use(`/${api}/users/all`, usersRoutes);
-app.use(`/${api}/orders/all`, ordersRoutes);
+app.use(`/${api}/products`, productsRouter);
+app.use(`/${api}/categories`, categoriesRoutes);
+app.use(`/${api}/users`, usersRoutes);
+app.use(`/${api}/orders`, ordersRoutes);
 
 
 /* connecting db */
