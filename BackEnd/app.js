@@ -6,12 +6,18 @@ const cors = require('cors');
  // require('dotenv').config({path: './.env'})
 // require('dotenv/config') testing commit success
 const api2 = process.env.API_URL;
+const authJwt = require('./helpers/jwt')
+const errorHandler = require('./helpers/error-handler');
 
 app.use(cors());
 app.options('*', cors());
 // MiddleWare
 app.use(express.json())
 app.use(morgan('tiny'))
+app.use(authJwt());
+
+app.use(errorHandler)
+
 
 // Routes
 const categoriesRoutes = require('./routers/categories');
@@ -30,8 +36,7 @@ app.use(`/${api}/orders`, ordersRoutes);
 
 /* connecting db */
 // const CONNECTION_STRING = 'mongodb+srv://ashu:qwEsc342@cluster0.hysqv.mongodb.net/?retryWrites=true&w=majority';
-const CONNECTION_STRING = 'mongodb+srv://ashu:qwEsc342@cluster0.zmur1.mongodb.net/?retryWrites=true&w=majority'
-
+const CONNECTION_STRING = 'mongodb+srv://ashu:qwEsc342@cluster0.zmur1.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology:  true,
